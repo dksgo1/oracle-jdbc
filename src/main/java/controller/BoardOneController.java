@@ -15,6 +15,11 @@ import vo.Board;
 @WebServlet("/BoardOneController")
 public class BoardOneController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * VIEW 메뉴구성
+		 * 1) 글 수정(로그인멤버 == 글쓴멤버)
+		 * 2) 글 삭제(로그인멤버 == 글쓴멤버)
+		 */
 		request.setCharacterEncoding("utf-8"); // 인코딩
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		// System.out.println(boardNo);

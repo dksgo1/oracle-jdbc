@@ -14,7 +14,7 @@ import vo.Board;
 
 
 
-@WebServlet("/BoardListController")
+@WebServlet("/board/boardList")
 public class BoardListController extends HttpServlet {
    private BoardService boardService;
    
@@ -34,7 +34,14 @@ public class BoardListController extends HttpServlet {
       request.setAttribute("boardList", list);
       request.setAttribute("currentPage", currentPage);
       request.setAttribute("rowPerPage", rowPerPage);
+    
+      /*
+       * VIEW 메뉴구성
+       * 1) 글입력
+       * 2) 글 상세보기
+       * 
+       */
       
-      request.getRequestDispatcher("/WEB-INF/view/boardList.jsp").forward(request, response);
+      request.getRequestDispatcher("/WEB-INF/view/board/boardList.jsp").forward(request, response);
    }
 }
