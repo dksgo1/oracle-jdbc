@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h3>게시글 수정</h3>
-	<form action="${pageContext.request.contextPath}/UpdateBoardActionController" method="post">
+	<form action="${pageContext.request.contextPath}/board/modifyBoard" method="post">
 		<table border="1">
 			<c:forEach var="b" items="${list}">
 				<tr>

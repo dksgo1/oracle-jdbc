@@ -23,10 +23,12 @@ public class HomeController extends HttpServlet {
 		 *  2) 로그인
 		 */  
 		// 로그인 전에만 들어올 수 있음
+		request.setCharacterEncoding("utf-8"); // 인코딩
 		HttpSession session = request.getSession();
 		// 로그인 전 : loginMember -> null
 		// 로그인 후 : loginMember -> not null
 		Member loginMember = (Member)session.getAttribute("loginMember");
+	
 		
 		if(loginMember == null) { // 로그인 안했을 경우
 			request.getRequestDispatcher("/WEB-INF/view/board/home.jsp").forward(request, response);

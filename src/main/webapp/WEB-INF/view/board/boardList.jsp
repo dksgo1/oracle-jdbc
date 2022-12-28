@@ -18,7 +18,7 @@
 <body>
 	<h1>BOARD LIST</h1>
 	<div>
-		<a href="${pageContext.request.contextPath}/InsertBoardFormController">글입력</a>
+		<a href="${pageContext.request.contextPath}/board/addBoard">글입력</a>
 	</div>
 	<form id="pageForm" method="get" action="${pageContext.request.contextPath}/BoardListController">
 		<select name="rowPerPage" id="rowPerPage">

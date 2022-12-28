@@ -13,24 +13,18 @@ import javax.servlet.http.HttpSession;
 import service.MemberService;
 import vo.Member;
 
-
-@WebServlet("/RemoveMemberController")
-public class RemoveMemberController extends HttpServlet {
+@WebServlet("/member/modifyPwMember")
+public class ModifyMemberPwController extends HttpServlet {
 	private MemberService memberService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*
-		 *  VIEW - > /WEB-INF/view/member/removeMember.jsp
+		 * VIEW -> /WEB-INF/view/member/modifyMember.jsp
 		 */
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/removeMember.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/modifyPwMember.jsp");
 		rd.forward(request, response);
 	}
 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * redirect -> get방식/member/logout <- 컨트롤러 요청
-		 */
-		
 		request.setCharacterEncoding("utf-8"); // 인코딩
 		
 		// 로그인 후에만 들어올 수 있음
@@ -43,28 +37,20 @@ public class RemoveMemberController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/Home");
 			return;
 		}
-		
 		String memberId = request.getParameter("memberId");
 		String memberPw = request.getParameter("memberPw");
-		
-		Member member = new Member();
-		member.setMemberId(memberId);
-		member.setMemberPw(memberPw);
-		
-		System.out.println(member);
+		String newMemberPw = request.getParameter("newMemberPw");
 		
 		this.memberService = new MemberService();
-		int row = memberService.removeMember(member);
-		
+		int row = memberService.modifyPwMember(memberId, memberPw, newMemberPw);
 		
 		if(row == 1) {
-			System.out.println("회원탈퇴");
+			System.out.println("비밀번호 수정 성공");
 		} else {
-			System.out.println("회원탈퇴 실패");
+			System.out.println("비밀번호 수정 실패");
 		}
 		
-		request.getSession().invalidate();
-		response.sendRedirect(request.getContextPath()+"/Home");
+		response.sendRedirect(request.getContextPath()+"/member/memberOne");
 	}
 
 }

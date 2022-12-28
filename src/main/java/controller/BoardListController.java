@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import service.BoardService;
 import vo.Board;
+import vo.Member;
 
 
 
@@ -19,7 +21,19 @@ public class BoardListController extends HttpServlet {
    private BoardService boardService;
    
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      int currentPage = 1;
+   
+		// 로그인 후에만 들어올 수 있음
+		HttpSession session = request.getSession();
+		// 로그인 전 : loginMember -> null
+		// 로그인 후 : loginMember -> not null
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+		if(loginMember == null) { // 로그인 안했을 경우
+			request.getRequestDispatcher("/WEB-INF/view/board/home.jsp").forward(request, response);
+			return;
+		}
+		
+	  int currentPage = 1;
       if(request.getParameter("currentPage") != null) {
          currentPage = Integer.parseInt(request.getParameter("currentPage"));
       }

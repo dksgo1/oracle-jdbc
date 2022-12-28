@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import service.BoardService;
 import vo.Board;
+import vo.Member;
 
 @WebServlet("/BoardOneController")
 public class BoardOneController extends HttpServlet {
@@ -21,6 +23,20 @@ public class BoardOneController extends HttpServlet {
 		 * 2) 글 삭제(로그인멤버 == 글쓴멤버)
 		 */
 		request.setCharacterEncoding("utf-8"); // 인코딩
+		
+		
+		// 로그인 후에만 들어올 수 있음
+		HttpSession session = request.getSession();
+		// 로그인 전 : loginMember -> null
+		// 로그인 후 : loginMember -> not null
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+		if(loginMember == null) { // 로그인 안했을 경우
+			request.getRequestDispatcher("/WEB-INF/view/board/home.jsp").forward(request, response);
+			return;
+		}
+		
+		
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		// System.out.println(boardNo);
 		
@@ -32,7 +48,7 @@ public class BoardOneController extends HttpServlet {
 		
 		// view 연결
 		// RequestDispatcher 1) include 2) forward
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/boardOne.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/board/boardOne.jsp");
 		rd.forward(request, response);
 	}
 

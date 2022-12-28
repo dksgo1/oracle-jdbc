@@ -7,11 +7,11 @@
 </head>
 <body>
 	<h3>게시글 입력</h3>
-	<form action="${pageContext.request.contextPath}/InsertBoardActionController" method="post">
+	<form action="${pageContext.request.contextPath}/board/addBoard" method="post">
 		<table border="1">
 			<tr>
 				<td>id</td>
-				<td><input type="text" name="memberId"></td>
+				<td><input type="text" name="memberId" value="${loginMember.memberId}" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>title</td>
