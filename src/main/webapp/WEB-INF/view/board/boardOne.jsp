@@ -22,7 +22,7 @@
 	<div>
 		<c:if test="${loginMember.memberId == b.memberId}">
 			<a href='${pageContext.request.contextPath}/board/modifyBoard?boardNo=${b.boardNo}'>수정</a>
-			<a href='${pageContext.request.contextPath}/DeleteBoardController?boardNo=${b.boardNo}'>삭제</a>
+			<a href='${pageContext.request.contextPath}/board/RemoveBoard?boardNo=${b.boardNo}'>삭제</a>
 		</c:if>	
 	</div>
 </body>

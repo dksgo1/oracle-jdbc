@@ -12,8 +12,12 @@
 		<table border="1">
 			<c:forEach var="b" items="${list}">
 				<tr>
+					<td>No</td>
+					<td><input type="no" name="boardNo" value="${b.boardNo}" readonly="readonly"></td>
+				</tr>
+				<tr>
 					<td>ID</td>
-					<td><input type="number" name="memberId" value="${b.memberId}" readonly="readonly"></td>
+					<td><input type="text" name="memberId" value="${b.memberId}" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<td>TITLE</td>

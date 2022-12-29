@@ -3,6 +3,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="simple/vendors/owl-carousel/css/owl.carousel.min.css">
+<link rel="stylesheet" href="simple/vendors/owl-carousel/css/owl.theme.default.css">
+<link rel="stylesheet" href="simple/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="simple/vendors/aos/css/aos.css">
+<link rel="stylesheet" href="simple/css/style.min.css">
 <title>Insert title here</title>
 </head>
 <body>

@@ -50,28 +50,30 @@ public class BoardDao {
 	// BoardOne
 	public Board boardOne(Connection conn, int boardNo) throws Exception {
 		Board b = null;
-		String sql = "SELECT member_id memberId, board_title boardTitle, board_content boardContent FROM board WHERE board_no =?";
+		String sql = "SELECT board_no boardNo, member_id memberId, board_title boardTitle, board_content boardContent FROM board WHERE board_no =?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, boardNo);
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
 			b = new Board();
+			b.setBoardNo(rs.getInt("boardNo"));
 			b.setMemberId(rs.getString("memberId"));
 			b.setBoardTitle(rs.getString("boardTitle"));
 			b.setBoardContent(rs.getString("boardContent"));
 		}
 		return b;
 	}
-	// 게시글 수정
-	public ArrayList<Board> updateBoard(Connection conn, int boardNo) throws Exception {
+	// 게시글 수정 폼
+	public ArrayList<Board> ModifyBoard(Connection conn, int boardNo) throws Exception {
 		ArrayList<Board> list = new ArrayList<Board>();
 		Board b = null;
-		String sql = "SELECT member_id memberId, board_title boardTitle, board_content boardContent FROM board WHERE board_no = ?";
+		String sql = "SELECT board_no boardNo, member_id memberId, board_title boardTitle, board_content boardContent FROM board WHERE board_no = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, boardNo);
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
 			b =  new Board();
+			b.setBoardNo(rs.getInt("boardNo"));
 			b.setMemberId(rs.getString("memberId"));
 			b.setBoardTitle(rs.getString("boardTitle"));
 			b.setBoardContent(rs.getString("boardContent"));
@@ -79,4 +81,28 @@ public class BoardDao {
 		}
 		return list;
 	}
+	
+	// 게시글 수정 액션
+	public int ModifyBoard2(Connection conn, Board board) throws Exception {
+		int row = 0;
+		String sql = "UPDATE board SET board_title=?, board_content=? WHERE board_no=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, board.getBoardTitle());
+		stmt.setString(2, board.getBoardContent());
+		stmt.setInt(3, board.getBoardNo());
+		row = stmt.executeUpdate();
+		return row;
+	}
+	
+	// 게시글 삭제
+	public int removeBoard(Connection conn, int boardNo) throws Exception {
+		int row = 0;
+		String sql = "DELETE FROM board WHERE board_no = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, boardNo);
+		row = stmt.executeUpdate();
+		return row;
+	}
+
+	
 }

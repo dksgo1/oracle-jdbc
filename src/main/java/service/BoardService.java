@@ -94,14 +94,14 @@ public class BoardService {
 		return b;
 	}
 	
-	public ArrayList<Board> updateBoard(int boardNo) {
+	public ArrayList<Board> ModifyBoard(int boardNo) {
 		ArrayList<Board> list = null;
 		boardDao = new BoardDao();
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
-			list = boardDao.updateBoard(conn, boardNo);
+			list = boardDao.ModifyBoard(conn, boardNo);
 			conn.commit();
 		} catch(Exception e) {
 			try {
@@ -118,5 +118,57 @@ public class BoardService {
 			}
 		}
 		return list;
+	}
+	
+	public int ModifyBoard2(Board board) {
+		int row = 0;
+		boardDao = new BoardDao();
+		Connection conn = null;
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			row = boardDao.ModifyBoard2(conn, board);
+			conn.commit();
+		} catch(Exception e) {
+			try {
+				conn.rollback();
+			} catch(SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}		
+		return row;
+	}
+	
+	public int removeBoard(int boardNo) {
+		int row = 0;
+		boardDao = new BoardDao();
+		Connection conn = null;
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			row = boardDao.removeBoard(conn, boardNo);
+			conn.commit();
+		} catch(Exception e) {
+			try {
+				conn.rollback();
+			} catch(SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}		
+		return row;
 	}
 }

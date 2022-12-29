@@ -42,7 +42,7 @@ public class BoardOneController extends HttpServlet {
 		
 		BoardService boardService = new BoardService();
 		Board board = boardService.boardOne(boardNo);
-		
+
 		// view와 공유할 모델데이터 설정
 		request.setAttribute("b", board);
 		
