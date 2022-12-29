@@ -15,6 +15,7 @@ public class HomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/*
+		 * 
 		 *	forward -> /WEB-INF/view/home.jsp
 		 *  메뉴구성(로그인 전/후 따라 분기
 		 * 
