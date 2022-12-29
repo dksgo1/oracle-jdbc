@@ -4,7 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="title" content="Neumorphism UI - Sign in">
+<meta name="author" content="Themesberg">
+<link rel="canonical" href="https://themesberg.com/product/ui-kits/neumorphism-ui/" />
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="120x120" href="../neumorphism/neumorphism/assets/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../neumorphism/neumorphism/assets/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../neumorphism/neumorphism/assets/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="../neumorphism/neumorphism/assets/img/favicon/site.webmanifest">
+<link rel="mask-icon" href="../neumorphism/neumorphism/assets/img/favicon/safari-pinned-tab.svg" color="#ffffff">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<!-- Fontawesome -->
+<link type="text/css" href="../neumorphism/neumorphism/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<!-- Pixel CSS -->
+<link type="text/css" href="../neumorphism/neumorphism/css/neumorphism.css" rel="stylesheet">
+<title>Board List</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -16,11 +33,12 @@
 </script>
 </head>
 <body>
-	<h1>BOARD LIST</h1>
 	<div>
-		<a href="${pageContext.request.contextPath}/board/addBoard">글입력</a>
+		<a class= "btn btn-outline-dark btn-sm" href="${pageContext.request.contextPath}/Home"><h4>HOME</h4></a>
+		<a class= "btn btn-outline-dark btn-sm" href="${pageContext.request.contextPath}/member/logout"><h4>LOGOUT</h4></a>
 	</div>
-	<form id="pageForm" method="get" action="${pageContext.request.contextPath}/BoardListController">
+	<h1 class="text-center">BOARD LIST</h1>
+	<form id="pageForm" method="get" action="${pageContext.request.contextPath}/board/boardList">
 		<select name="rowPerPage" id="rowPerPage">
 			<c:if test="${rowPerPage == 10}">
 				<option value="10" selected="selected">10</option>
@@ -39,7 +57,7 @@
 			</c:if>
 		</select>
 	</form>
-	<table border="1">
+	<table class="table table-hover shadow-inset rounded">
 		<tr>
 			<th>boardNo</th>
 			<th>boardTitle</th>
@@ -53,9 +71,10 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<div>
-		<a href="${pageContext.request.contextPath}/BoardListController?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}">이전</a>
-		<a href="${pageContext.request.contextPath}/BoardListController?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}">다음</a>
+		<a class="btn btn-primary text-dark" href="${pageContext.request.contextPath}/board/addBoard">글입력</a>
+	<div style=" text-align: center;">	
+		<a class="btn btn-primary text-info" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}">이전</a>
+		<a class="btn btn-primary text-info" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}">다음</a>
 	</div>
 </body>
 </html>
