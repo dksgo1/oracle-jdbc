@@ -68,7 +68,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                                 </div>
-                                                <input class="form-control" id="exampleConfirmPassword7" name="memberName" placeholder="Name" type="password" aria-label="Password" required>
+                                                <input class="form-control" id="exampleConfirmPassword7" name="memberName" placeholder="Name" type="text" aria-label="Password" required>
                                             </div>
                                         </div>
                                         <!-- End of Form -->

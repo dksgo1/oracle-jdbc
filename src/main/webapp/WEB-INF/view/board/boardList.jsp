@@ -39,6 +39,9 @@
 	</div>
 	<h1 class="text-center">BOARD LIST</h1>
 	<form id="pageForm" method="get" action="${pageContext.request.contextPath}/board/boardList">
+		<div style=" text-align: right;">	
+			<a class="btn btn-primary text-dark" href="${pageContext.request.contextPath}/board/addBoard">글입력</a>
+		</div>	
 		<select name="rowPerPage" id="rowPerPage">
 			<c:if test="${rowPerPage == 10}">
 				<option value="10" selected="selected">10</option>
@@ -71,9 +74,15 @@
 			</tr>
 		</c:forEach>
 	</table>
-		<a class="btn btn-primary text-dark" href="${pageContext.request.contextPath}/board/addBoard">글입력</a>
+	<form action="${pageContext.request.contextPath}/board/boardList" method="get">
+		<span>
+			<input type="text" name="word">
+			<button type="submit">검색</button>
+		</span>
+	</form>
 	<div style=" text-align: center;">	
 		<a class="btn btn-primary text-info" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}">이전</a>
+		<span>${currentPage}</span>
 		<a class="btn btn-primary text-info" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}">다음</a>
 	</div>
 </body>

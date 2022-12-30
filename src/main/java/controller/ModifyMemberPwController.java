@@ -20,13 +20,25 @@ public class ModifyMemberPwController extends HttpServlet {
 		/*
 		 * VIEW -> /WEB-INF/view/member/modifyMember.jsp
 		 */
+		request.setCharacterEncoding("utf-8"); // 인코딩
+		// 로그인 후에만 들어올 수 있음
+		HttpSession session = request.getSession();
+		// 로그인 전 : loginMember -> null
+		// 로그인 후 : loginMember -> not null
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+		if(loginMember == null) { //  로그인 아닌 상태
+			response.sendRedirect(request.getContextPath()+"/Home");
+			return;
+		}
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/modifyPwMember.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8"); // 인코딩
-		
 		// 로그인 후에만 들어올 수 있음
 		HttpSession session = request.getSession();
 		// 로그인 전 : loginMember -> null

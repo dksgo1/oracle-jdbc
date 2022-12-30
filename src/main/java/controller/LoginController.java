@@ -46,6 +46,15 @@ public class LoginController extends HttpServlet {
 		// System.out.println(memberId);
 		// System.out.println(memberPw);
 		
+		// null 값이나 공백값 못들어오게
+		if(memberId == null 
+			|| memberPw == null	
+			|| memberId.equals("")
+			|| memberPw.equals("")) {
+			response.sendRedirect(request.getContextPath()+"/member/login");
+			return;
+		}
+		
 		Member member = new Member();
 		member.setMemberId(memberId);
 		member.setMemberPw(memberPw);
